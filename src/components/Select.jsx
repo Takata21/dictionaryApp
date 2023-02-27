@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect } from 'react'
 
 function Select() {
   const ref = useRef()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selected, setSelected] = useState("Sans")
+  const [selected, setSelected] = useState('Sans')
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -15,11 +15,11 @@ function Select() {
       }
     }
 
-    document.addEventListener("mousedown", checkIfClickedOutside)
+    document.addEventListener('mousedown', checkIfClickedOutside)
 
     return () => {
       // Cleanup the event listener
-      document.removeEventListener("mousedown", checkIfClickedOutside)
+      document.removeEventListener('mousedown', checkIfClickedOutside)
     }
   }, [isMenuOpen])
   const handleSelected = (option) => {
@@ -33,10 +33,10 @@ function Select() {
       ref={ref}
     >
       <button
-        className="flex items-center gap-1 capitalize button font-semibold w-28 justify-end dark:bg-[#050505] dark:text-[#f5f5f5]"
+        className={`flex items-center gap-1 capitalize button  w-28 justify-end dark:bg-[#050505] dark:text-[#f5f5f5]  font-${selected}`}
         onClick={() => setIsMenuOpen((prev) => !prev)}
       >
-        {selected === "sans" ? `${selected} Serif` : selected}
+        {selected === 'sans' ? `${selected} Serif` : selected}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
@@ -53,22 +53,22 @@ function Select() {
         </svg>
       </button>
       {isMenuOpen && (
-        <ul className="absolute shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-40 p-3 mt-4 dark:bg-[#050505] dark:text-[#f5f5f5]">
+        <ul className="absolute shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-40 p-3 mt-4 bg-white z-10 dark:bg-[#050505] dark:text-[#f5f5f5] ">
           <li
-            className="font-sans cursor-pointer hover:text-[#a445ed] font-semibold"
-            onClick={() => handleSelected("sans")}
+            className="font-sans cursor-pointer hover:text-[#a445ed]"
+            onClick={() => handleSelected('sans')}
           >
             Sans Serif
           </li>
           <li
-            className="font-serif cursor-pointer hover:text-[#a445ed] font-semibold"
-            onClick={() => handleSelected("serif")}
+            className="font-serif cursor-pointer hover:text-[#a445ed]"
+            onClick={() => handleSelected('serif')}
           >
             Serif
           </li>
           <li
-            className="font-mono cursor-pointer hover:text-[#a445ed] font-semibold"
-            onClick={() => handleSelected("mono")}
+            className="font-mono cursor-pointer hover:text-[#a445ed]"
+            onClick={() => handleSelected('mono')}
           >
             Mono
           </li>
