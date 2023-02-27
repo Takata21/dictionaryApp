@@ -3,7 +3,7 @@ import Switch from "./Switch"
 
 function Navbar() {
   return (
-    <header className="flex items-center justify-between p-5 mt-12">
+    <header className="flex items-center justify-between p-5 mt-6 w-full dark:bg-[#050505] dark:text-[#f5f5f5]">
       <a href="/" className="flex-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@ function Navbar() {
           </g>
         </svg>
       </a>
-      <div className="flex items-center flex-1">
+      <div className="flex items-center flex-1 md:flex-[0]">
         <Select />
         <Switch />
       </div>

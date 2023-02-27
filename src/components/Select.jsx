@@ -28,9 +28,12 @@ function Select() {
     setIsMenuOpen((prev) => !prev)
   }
   return (
-    <div className="relative flex-1" ref={ref}>
+    <div
+      className="relative flex-1 mr-5 dark:bg-[#050505] dark:text-[#f5f5f5]"
+      ref={ref}
+    >
       <button
-        className="flex items-center gap-1 capitalize button"
+        className="flex items-center gap-1 capitalize button font-semibold w-28 justify-end dark:bg-[#050505] dark:text-[#f5f5f5]"
         onClick={() => setIsMenuOpen((prev) => !prev)}
       >
         {selected === "sans" ? `${selected} Serif` : selected}
@@ -50,21 +53,21 @@ function Select() {
         </svg>
       </button>
       {isMenuOpen && (
-        <ul className="absolute shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-28 p-3">
+        <ul className="absolute shadow-[0_3px_10px_rgb(0,0,0,0.2)] w-40 p-3 mt-4 dark:bg-[#050505] dark:text-[#f5f5f5]">
           <li
-            className="font-sans cursor-pointer hover:text-[#a445ed]"
+            className="font-sans cursor-pointer hover:text-[#a445ed] font-semibold"
             onClick={() => handleSelected("sans")}
           >
             Sans Serif
           </li>
           <li
-            className="font-serif cursor-pointer hover:text-[#a445ed]"
+            className="font-serif cursor-pointer hover:text-[#a445ed] font-semibold"
             onClick={() => handleSelected("serif")}
           >
             Serif
           </li>
           <li
-            className="font-mono cursor-pointer hover:text-[#a445ed]"
+            className="font-mono cursor-pointer hover:text-[#a445ed] font-semibold"
             onClick={() => handleSelected("mono")}
           >
             Mono
