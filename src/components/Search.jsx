@@ -6,7 +6,7 @@ function Search() {
       <form className="flex justify-between items-center relative ">
         <input
           type="text"
-          className=" border-none flex-1 px-6 py-5  bg-[#f5f5f5] rounded-3xl outline-[#a445ed] placeholder:text-[#757575] placeholder:font-medium dark:bg-[#1f1f1f]"
+          className=" border-none flex-1 px-6 py-5  bg-[#f5f5f5] rounded-3xl outline-[#a445ed] placeholder:text-[#757575] placeholder:font-medium dark:bg-[#1f1f1f] md:placeholder:text-xl md:placeholder:font-semibold"
           placeholder="Search for any word..."
         />
         <button className="w-auto  absolute right-5 top-0 bottom-0 w-5">
