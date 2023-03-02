@@ -1,4 +1,4 @@
-async function getWordMeaning(word) {
+async function searchWord(word) {
   const API_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en'
   try {
     const response = await fetch(`${API_URL}/${word}`)
@@ -10,4 +10,4 @@ async function getWordMeaning(word) {
   }
 }
 
-export default getWordMeaning
+export default searchWord
