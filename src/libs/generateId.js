@@ -1,7 +1,5 @@
 function generateId() {
-  const id = crypto.randomUUID()
-  console.log(id)
-  return id
+  return crypto.randomUUID()
 }
 
 export default generateId
