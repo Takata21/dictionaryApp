@@ -1,8 +1,10 @@
 import generateId from '../libs/generateId'
 import result from '../Mocks/Word.json'
+import { Link } from 'wouter'
 // import getWordMeaning from '../services/Words'
-function Result() {
+function Default() {
   const data = result[0]
+
   return (
     <section className="px-6 mt-6  w-full text-base md:text-xl">
       <div className="flex justify-between items-center">
@@ -56,35 +58,57 @@ function Result() {
             </ul>
             {item?.synonyms.length > 0 && (
               <>
-                <h4 className="font-light my-3 capitalize text-gray-500 md:text-2xl">
+                <h4 className="font-light my-3 capitalize text-[#a445ed] italic md:text-2xl">
                   Synonyms
                 </h4>
                 <ul className="list-disc">
-                  {item?.synonyms.map((synonym) => (
-                    <li
-                      className="marker:text-[#a445ed] capitalize text-gray-600 font-medium"
-                      key={generateId()}
-                    >
-                      {synonym}
-                    </li>
-                  ))}
+                  {item?.synonyms.map((synonym) => {
+                    return synonym.match(' ') ? (
+                      <li
+                        className="marker:text-[#a445ed] capitalize text-gray-600 font-medium"
+                        key={generateId()}
+                      >
+                        {synonym}
+                      </li>
+                    ) : (
+                      <li
+                        className="marker:text-[#a445ed] capitalize text-gray-600 font-medium"
+                        key={generateId()}
+                      >
+                        <Link to={`/meaning/${synonym}`}>
+                          <a className="text-[#a445ed]">{synonym}</a>
+                        </Link>
+                      </li>
+                    )
+                  })}
                 </ul>
               </>
             )}
             {item?.antonyms.length > 0 && (
               <>
-                <h4 className="font-light my-3 capitalize text-gray-500 md:text-2xl">
+                <h4 className="font-light my-3 capitalize text-[#a445ed] italic md:text-2xl">
                   Antonyms
                 </h4>
                 <ul className="list-disc">
-                  {item?.antonyms.map((antonym) => (
-                    <li
-                      className="marker:text-[#a445ed] capitalize text-gray-600 font-medium"
-                      key={generateId()}
-                    >
-                      {antonym}
-                    </li>
-                  ))}
+                  {item?.antonyms.map((antonym) => {
+                    return antonym.match(' ') ? (
+                      <li
+                        className="marker:text-[#a445ed] capitalize text-gray-600 font-medium"
+                        key={generateId()}
+                      >
+                        {antonym}
+                      </li>
+                    ) : (
+                      <li
+                        key={generateId()}
+                        className="marker:text-[#a445ed] capitalize text-gray-600 font-medium"
+                      >
+                        <Link to={`/meaning/${antonym}`}>
+                          <a className="text-[#a445ed]">{antonym}</a>
+                        </Link>
+                      </li>
+                    )
+                  })}
                 </ul>
               </>
             )}
@@ -108,4 +132,4 @@ function Result() {
   )
 }
 
-export default Result
+export default Default
