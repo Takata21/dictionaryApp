@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react'
-
+import { useThemeStore } from '../store/ThemeStore'
 function Select() {
+  const { changeFont, font } = useThemeStore()
   const ref = useRef()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [selected, setSelected] = useState('Sans')
 
   useEffect(() => {
     const checkIfClickedOutside = (e) => {
@@ -23,8 +23,7 @@ function Select() {
     }
   }, [isMenuOpen])
   const handleSelected = (option) => {
-    console.log(option)
-    setSelected(option)
+    changeFont(option)
     setIsMenuOpen((prev) => !prev)
   }
   return (
@@ -33,10 +32,10 @@ function Select() {
       ref={ref}
     >
       <button
-        className={`flex items-center gap-1 capitalize button  w-28 justify-end dark:bg-[#050505] dark:text-[#f5f5f5]  font-${selected}`}
+        className={`flex items-center gap-1 capitalize button  w-28 justify-end dark:bg-[#050505] dark:text-[#f5f5f5]  font-${font}`}
         onClick={() => setIsMenuOpen((prev) => !prev)}
       >
-        {selected === 'sans' ? `${selected} Serif` : selected}
+        {font === 'sans' ? `${font} Serif` : font}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"

@@ -1,13 +1,35 @@
-import React from 'react'
-
+import React, { useRef, useState } from 'react'
+import { useLocation } from 'wouter'
 function Search() {
+  const [location, setLocation] = useLocation()
+  const [inputWord, setInputWord] = useState('')
+  const inputSearch = useRef()
+  const handleChange = (e) => {
+    const newSearch = e.target.value
+    setInputWord(newSearch)
+  }
+  const handleSubmit = (e) => {
+    if (inputWord === '') {
+      prompt('please write a word')
+      return
+    }
+    e.preventDefault()
+    setLocation(`/meaning/${inputWord}`)
+  }
   return (
     <div className="w-11/12 m-auto mt-14 md:text-xl">
-      <form className="flex justify-between items-center relative ">
+      <form
+        className="flex justify-between items-center relative"
+        onSubmit={handleSubmit}
+      >
         <input
           type="text"
           className=" border-none flex-1 px-6 py-5  bg-[#f5f5f5] rounded-3xl outline-[#a445ed] placeholder:text-[#757575] placeholder:font-medium dark:bg-[#1f1f1f] md:placeholder:text-xl md:placeholder:font-semibold"
           placeholder="Search for any word..."
+          onChange={handleChange}
+          ref={inputSearch}
+          value={inputWord}
+          required
         />
         <button className="w-auto  absolute right-5 top-0 bottom-0 w-5">
           <svg

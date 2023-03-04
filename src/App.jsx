@@ -6,14 +6,14 @@ import Search from './components/Search'
 import { useThemeStore } from './store/ThemeStore'
 
 function App() {
-  const { mode, font } = useThemeStore()
-  console.log(mode)
-  console.log(font)
+  const { dark, font } = useThemeStore()
+  console.log(dark)
+
   return (
-    <div className={`${mode === 'dark' ? 'dark' : ''} `}>
+    <div className={`${dark && 'dark bg-black'} font-${font}`}>
       <div
         className={
-          'App max-w-4xl m-auto w-full dark:bg-black dark:text-[#f5f5f5]'
+          'App max-w-3xl m-auto w-full dark:bg-black dark:text-[#f5f5f5]'
         }
       >
         <Navbar />
