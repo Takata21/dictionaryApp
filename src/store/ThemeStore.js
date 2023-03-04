@@ -1,10 +1,10 @@
 import { create } from 'zustand'
 
 export const useThemeStore = create((set) => ({
-  mode: 'dark',
+  dark: window.matchMedia('(prefers-color-scheme: dark)'),
   font: 'sans',
-  changeMode: (payload) => {
-    set((state) => ({ ...state, mode: payload }))
+  changeMode: () => {
+    set((state) => ({ ...state, dark: !state.dark }))
   },
   changeFont: (payload) => {
     set((state) => ({ ...state, font: payload }))

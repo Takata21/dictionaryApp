@@ -1,21 +1,19 @@
-import { useState } from "react"
+import { useThemeStore } from '../store/ThemeStore'
 
 function Switch() {
-  const [active, setActive] = useState(false)
-  const handleClick = () => {
-    setActive((prev) => !prev)
-  }
+  const { dark, changeMode } = useThemeStore()
+
   return (
     <div className="flex items-center justify-end flex-1 gap-2 group pl-5 border-l border-[#a445ed] ">
       <button
         className={`w-9 rounded-xl relative bg-[#757575] h-4 before:w-3 before:h-3 before:bg-white block before:absolute before:top-0.5 before:left-1 before:rounded-full group-hover:bg-[#a445ed] before:transition-transform before:duration-500
         ${
-          active
-            ? "bg-[#a445ed] before:translate-x-[18px]"
-            : "before:translate-x-[-2px]"
+          dark
+            ? 'bg-[#a445ed] before:translate-x-[18px]'
+            : 'before:translate-x-[-2px]'
         }`}
         id="toggle"
-        onClick={() => handleClick()}
+        onClick={() => changeMode()}
       ></button>
       <label htmlFor="toggle">
         <svg
