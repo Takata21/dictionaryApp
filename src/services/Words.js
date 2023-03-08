@@ -6,7 +6,7 @@ async function searchWord(word) {
     const meaning = data
     return meaning
   } catch (err) {
-    throw new Error('Error searching word')
+    return err
   }
 }
 
