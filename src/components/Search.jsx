@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { useLocation } from 'wouter'
+import { useWordStore } from '../store/WordStore'
+import Loader from './Loader'
 function Search() {
+  const { getMeaning, loading } = useWordStore()
   const [location, setLocation] = useLocation()
   const [inputWord, setInputWord] = useState('')
   const inputSearch = useRef()
@@ -8,12 +11,13 @@ function Search() {
     const newSearch = e.target.value
     setInputWord(newSearch)
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     if (inputWord === '') {
       prompt('please write a word')
       return
     }
     e.preventDefault()
+    await getMeaning(inputWord)
     setLocation(`/meaning/${inputWord}`)
   }
   return (
@@ -22,9 +26,14 @@ function Search() {
         className="flex justify-between items-center relative"
         onSubmit={handleSubmit}
       >
+        {loading && (
+          <div className="absolute right-11">
+            <Loader />
+          </div>
+        )}
         <input
           type="text"
-          className=" border-none flex-1 px-6 py-5  bg-[#f5f5f5] rounded-3xl outline-[#a445ed] placeholder:text-[#757575] placeholder:font-medium dark:bg-[#1f1f1f] md:placeholder:text-xl md:placeholder:font-semibold"
+          className="border-none flex-1 px-6 py-5  bg-[#f5f5f5] rounded-3xl outline-[#a445ed] placeholder:text-[#757575] placeholder:font-medium dark:bg-[#1f1f1f] md:placeholder:text-xl md:placeholder:font-semibold"
           placeholder="Search for any word..."
           onChange={handleChange}
           ref={inputSearch}
