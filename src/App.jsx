@@ -7,7 +7,6 @@ import { useThemeStore } from './store/ThemeStore'
 
 function App() {
   const { dark, font } = useThemeStore()
-  console.log(dark)
 
   return (
     <div className={`${dark && 'dark bg-black'} font-${font}`}>
