@@ -1,8 +1,13 @@
 import generateId from '../libs/generateId'
 import result from '../Mocks/Word.json'
 import { Link } from 'wouter'
+import { useRef } from 'react'
 // import getWordMeaning from '../services/Words'
 function Default() {
+  const audioRef = useRef()
+  const handlePlay = () => {
+    audioRef.current.play()
+  }
   const data = result[0]
 
   return (
@@ -20,7 +25,10 @@ function Default() {
 
         {data.phonetics.length > 0 && (
           <>
-            <button className="bg-[#e8d0fa] w-16 h-16 flex items-center justify-center rounded-full hover:bg-[#a445ed] group transition-colors">
+            <button
+              className="bg-[#e8d0fa] w-16 h-16 flex items-center justify-center rounded-full hover:bg-[#a445ed] group transition-colors"
+              onClick={handlePlay}
+            >
               <svg
                 className="group-hover:fill-[#fff]"
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +45,7 @@ function Default() {
                 />
               </svg>
             </button>
-            <audio src={data?.phonetics[0]?.audio}></audio>
+            <audio src={data?.phonetics[0]?.audio} ref={audioRef}></audio>
           </>
         )}
       </div>
